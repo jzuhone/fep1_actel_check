@@ -1,0 +1,6 @@
+build
+dist
+*.pyc
+*~
+fep1actel_check.egg-info
+doc/_build
