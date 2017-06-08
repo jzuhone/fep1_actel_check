@@ -236,7 +236,7 @@
     "datestop": "2017:097:23:51:52.816", 
     "dt": 328.0, 
     "gui_config": {
-        "filename": "/home/jzuhone/Source/fep1actel_check/fep1actel_check/fep1actel_model_spec.json", 
+        "filename": "/home/jzuhone/Source/fep1_actel_check/fep1_actel_check/fep1_actel_model_spec.json",
         "plot_names": [
             "tmp_fep1_actel data__time", 
             "tmp_fep1_actel resid__data"
@@ -248,7 +248,7 @@
         ]
     }, 
     "mval_names": [], 
-    "name": "fep1actel", 
+    "name": "fep1_actel",
     "pars": [
         {
             "comp_name": "mask__tmp_fep1_actel_gt", 

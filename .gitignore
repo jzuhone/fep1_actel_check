@@ -2,5 +2,5 @@ build
 dist
 *.pyc
 *~
-fep1actel_check.egg-info
+fep1_actel_check.egg-info
 doc/_build

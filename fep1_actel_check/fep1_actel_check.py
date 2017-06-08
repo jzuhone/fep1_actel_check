@@ -2,7 +2,7 @@
 
 """
 ========================
-fep1actel_check
+fep1_actel_check
 ========================
 
 This code generates backstop load review outputs for checking the ACIS
@@ -26,10 +26,10 @@ import os
 
 model_path = os.path.abspath(os.path.dirname(__file__))
 
-MSID = dict(fep1actel='TMP_FEP1_ACTEL')
+MSID = dict(fep1_actel='TMP_FEP1_ACTEL')
 # This is the Yellow High IPCL limit.
 # 05/2014 - changed from 35.0 to 37.5
-YELLOW = dict(fep1actel=45.0)
+YELLOW = dict(fep1_actel=45.0)
 # This is the difference between the Yellow High IPCL limit and 
 # the Planning Limit. So the Planning Limit is YELLOW - MARGIN
 #
@@ -42,7 +42,7 @@ YELLOW = dict(fep1actel=45.0)
 #          testing.  So for now the planning limit will be 34.5 deg. C.
 # 09/19/14 - Set MARGIN to 2.0 so that the Planning Limit is now 
 #            35.5 deg. C
-MARGIN = dict(fep1actel=2.0)
+MARGIN = dict(fep1_actel=2.0)
 # 12/5/13 - Likewise the 1DPAMZT validation limits were reduced to 2.0 
 #           from 2.5 for the 1% and 99% quantiles
 VALIDATION_LIMITS = {'TMP_FEP1_ACTEL': [(1, 2.0),
@@ -56,7 +56,7 @@ VALIDATION_LIMITS = {'TMP_FEP1_ACTEL': [(1, 2.0),
 HIST_LIMIT = [20.]
 
 def calc_model(model_spec, states, start, stop, T_fep=None, T_fep_times=None):
-    model = xija.ThermalModel('fep1actel', start=start, stop=stop,
+    model = xija.ThermalModel('fep1_actel', start=start, stop=stop,
                               model_spec=model_spec)
     times = np.array([states['tstart'], states['tstop']])
     model.comp['sim_z'].set_data(states['simpos'], times)
@@ -70,14 +70,14 @@ def calc_model(model_spec, states, start, stop, T_fep=None, T_fep_times=None):
     model.calc()
     return model
 
-fep1actel_check = ACISThermalCheck("tmp_fep1_actel", "fep1actel", MSID,
+fep1_actel_check = ACISThermalCheck("tmp_fep1_actel", "fep1_actel", MSID,
                                    YELLOW, MARGIN, VALIDATION_LIMITS,
                                    HIST_LIMIT, calc_model)
 
 def main():
-    opt, args = get_options("TMP_FEP1_ACTEL", "fep1actel", model_path)
+    opt, args = get_options("TMP_FEP1_ACTEL", "fep1_actel", model_path)
     try:
-        fep1actel_check.driver(opt)
+        fep1_actel_check.driver(opt)
     except Exception as msg:
         if opt.traceback:
             raise
