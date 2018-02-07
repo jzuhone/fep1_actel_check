@@ -23,25 +23,19 @@ import sys
 from acis_thermal_check import \
     ACISThermalCheck, \
     calc_off_nom_rolls, \
-    get_options, \
-    make_state_builder, \
-    get_acis_limits
+    get_options
 import os
 
 model_path = os.path.abspath(os.path.dirname(__file__))
 
-yellow_hi, red_hi = get_acis_limits("tmp_fep1_actel")
-
-MSID = {"fep1_actel": 'TMP_FEP1_ACTEL'}
-YELLOW = {"fep1_actel": yellow_hi}
-MARGIN = {"fep1_actel": 2.0}
 VALIDATION_LIMITS = {'TMP_FEP1_ACTEL': [(1, 2.0), (50, 1.0), (99, 2.0)],
                      'PITCH': [(1, 3.0), (99, 3.0)],
                      'TSCPOS': [(1, 2.5), (99, 2.5)]
                      }
 HIST_LIMIT = [20.]
 
-def calc_model(model_spec, states, start, stop, T_fep=None, T_fep_times=None):
+def calc_model(model_spec, states, start, stop, T_fep=None, T_fep_times=None,
+               dh_heater=None, dh_heater_times=None):
     model = xija.ThermalModel('fep1_actel', start=start, stop=stop,
                               model_spec=model_spec)
     times = np.array([states['tstart'], states['tstop']])
@@ -58,12 +52,11 @@ def calc_model(model_spec, states, start, stop, T_fep=None, T_fep_times=None):
 
 def main():
     args = get_options("fep1_actel", model_path)
-    state_builder = make_state_builder(args.state_builder, args)
-    fep1_actel_check = ACISThermalCheck("tmp_fep1_actel", "fep1_actel", MSID,
-                                        YELLOW, MARGIN, VALIDATION_LIMITS,
-                                        HIST_LIMIT, calc_model)
+    fep1_actel_check = ACISThermalCheck("tmp_fep1_actel", "fep1_actel", 
+                                        VALIDATION_LIMITS, HIST_LIMIT, 
+                                        calc_model, args)
     try:
-        fep1_actel_check.driver(args, state_builder)
+        fep1_actel_check.run()
     except Exception as msg:
         if args.traceback:
             raise
