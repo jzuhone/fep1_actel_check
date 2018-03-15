@@ -32,7 +32,7 @@ VALIDATION_LIMITS = {'TMP_FEP1_ACTEL': [(1, 2.0), (50, 1.0), (99, 2.0)],
                      'PITCH': [(1, 3.0), (99, 3.0)],
                      'TSCPOS': [(1, 2.5), (99, 2.5)]
                      }
-HIST_LIMIT = [20., 10.0] # First limit is >=, second limit is <=
+HIST_LIMIT = [25., 20.0] # First limit is >=, second limit is <=
 
 def calc_model(model_spec, states, start, stop, T_fep=None, T_fep_times=None,
                dh_heater=None, dh_heater_times=None):
