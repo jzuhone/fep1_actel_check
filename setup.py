@@ -2,6 +2,11 @@
 from setuptools import setup
 from fep1_actel_check import __version__
 
+try:
+    from testr.setup_helper import cmdclass
+except ImportError:
+    cmdclass = {}
+
 entry_points = {'console_scripts': 'fep1_actel_check = fep1_actel_check.fep1_actel_check:main'}
 
 url = 'https://github.com/acisops/fep1_actel_check/tarball/{}'.format(__version__)
@@ -22,4 +27,7 @@ setup(name='fep1_actel_check',
           'Programming Language :: Python :: 3.5',
       ],
       entry_points=entry_points,
+      zip_safe=False,
+      tests_require=["pytest"],
+      cmdclass=cmdclass,
       )
