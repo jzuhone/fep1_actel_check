@@ -9,7 +9,7 @@ f1a_rt = RegressionTester("tmp_fep1_actel", "fep1_actel", model_path,
 
 # SQL state builder tests
 
-f1a_rt.run_models(state_builder='acis')
+f1a_rt.run_models(state_builder='sql')
 
 # Prediction tests
 
