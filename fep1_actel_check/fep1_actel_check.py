@@ -35,6 +35,7 @@ class FEP1ActelCheck(DPABoardTempCheck):
         super(FEP1ActelCheck, self).__init__("tmp_fep1_actel", "fep1_actel",
                                              valid_limits, hist_limit)
 
+
 def main():
     args = get_options("fep1_actel", model_path)
     fep1_actel_check = FEP1ActelCheck()
