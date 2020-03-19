@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 from setuptools import setup
 
+try:
+      from testr.setup_helper import cmdclass
+except ImportError:
+      cmdclass = {}
+
 entry_points = {'console_scripts': 'fep1_actel_check = fep1_actel_check.fep1_actel_check:main'}
 
 setup(name='fep1_actel_check',
@@ -13,4 +18,7 @@ setup(name='fep1_actel_check',
       url='http://github.com/acisops/fep1_actel_check',
       include_package_data=True,
       entry_points=entry_points,
+      zip_safe=False,
+      tests_require=["pytest"],
+      cmdclass=cmdclass,
       )
