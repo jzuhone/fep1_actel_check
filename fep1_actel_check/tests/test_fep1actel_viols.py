@@ -4,11 +4,12 @@ from acis_thermal_check.regression_testing import \
 import pytest
 import os
 
-fep1actel_rt = RegressionTester(FEP1ActelCheck, model_path, "fep1_actel_test_spec.json")
 
-
-def test_JUL3019A_viols(answer_store):
+def test_JUL3019A_viols(answer_store, test_root):
     answer_data = os.path.join(os.path.dirname(__file__), "answers",
                                "JUL2919A_viol.json")
-    fep1actel_rt.check_violation_reporting("JUL2919A", answer_data,
-                                           answer_store=answer_store)
+    fa_rt = RegressionTester(FEP1ActelCheck, model_path,
+                             "fep1_actel_test_spec.json",
+                             test_root=test_root, sub_dir='viols')
+    fa_rt.check_violation_reporting("JUL2919A", answer_data,
+                                    answer_store=answer_store)
