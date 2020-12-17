@@ -4,3 +4,6 @@ dist
 *~
 fep1_actel_check.egg-info
 doc/_build
+fep1_actel_check/tests/answers/*/*[.png, .csv, .css]
+fep1_actel_check/tests/answers/*/index.*
+fep1_actel_check/tests/answers/*/run.dat
